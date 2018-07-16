@@ -34,10 +34,14 @@ $txt['optimus_403_h3']                 = 'Sorry, but you have no access to this 
 $txt['optimus_extra_title'] = 'Metadata';
 $txt['optimus_extra_desc']  = 'Here you can add an additional <a href="http://ogp.me/" target="_blank" rel="noopener">markup</a> for forum pages.';
 
-$txt['optimus_og_image'] = 'Use the image from the first topic message in the meta tag <strong>og:image</strong>';
-$txt['optimus_fb_appid'] = '<a href="https://developers.facebook.com/apps" target="_blank" rel="noopener">APP ID</a> (Application ID) <a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>';
-$txt['optimus_tw_cards'] = '<a href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a> account name (specify to enable <a href="https://dev.twitter.com/cards/overview" target="_blank" rel="noopener">Twitter Cards</a>)';
-$txt['optimus_json_ld']  = '<a href="https://json-ld.org/" target="_blank" rel="noopener">JSON-LD</a> markup for "<a href="https://developers.google.com/search/docs/data-types/breadcrumbs?hl=' . $txt['lang_dictionary'] . '" target="_blank" rel="noopener">breadcrumbs</a>"';
+$txt['optimus_og_image']      = 'Use the image from the first topic message in the meta tag <strong>og:image</strong>';
+$txt['optimus_og_image_help'] = 'If enabled, the <strong>og:image</strong> meta tag will include a link to the first image attached to the first topic message. If there is no attachment, and the image inside the <strong>img</strong> tag is found in the message text, it is used.';
+$txt['optimus_fb_appid']      = 'Facebook Application ID (if you have)';
+$txt['optimus_fb_appid_help'] = 'Create an application <a href="https://developers.facebook.com/apps" target="_blank" rel="noopener"><strong>here</strong></a>, copy its ID and fill this field.';
+$txt['optimus_tw_cards']      = 'Twitter account name (if you have)';
+$txt['optimus_tw_cards_help'] = 'Read more about Twitter cards <a href="https://dev.twitter.com/cards/overview" target="_blank" rel="noopener"><strong>here</strong></a>.';
+$txt['optimus_json_ld']       = 'JSON-LD markup for "breadcrumbs"';
+$txt['optimus_json_ld_help']  = 'JSON-LD is a lightweight Linked Data format. It is easy for humans to read and write. It is based on the already successful JSON format and provides a way to help JSON data interoperate at Web-scale. JSON-LD is an ideal data format for programming environments, REST Web services, and unstructured databases such as CouchDB and MongoDB.<br><br>Enable this option to generate JSON-LD markup for "<a href="https://developers.google.com/search/docs/data-types/breadcrumbs?hl=en" target="_blank" rel="noopener"><strong>breadcrumbs</strong></a>".';
 
 $txt['optimus_favicon_title'] = 'Favicon';
 $txt['optimus_favicon_desc']  = 'Create your own forum icon. It will be displayed by the browser in the tab before the page name, as well as an image next to the open tab and other interface elements.';

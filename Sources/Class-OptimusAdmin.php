@@ -47,6 +47,23 @@ class OptimusAdmin
 	}
 
 	/**
+	 * Легкий доступ к настройкам мода через быстрый поиск в админке
+	 *
+	 * @param array $language_files
+	 * @param array $include_files
+	 * @param array $settings_search
+	 * @return void
+	 */
+	public static function adminSearch(&$language_files, &$include_files, &$settings_search)
+	{
+		$settings_search[] = array('OptimusAdmin::baseSettings', 'area=optimus;sa=base');
+		$settings_search[] = array('OptimusAdmin::extraSettings', 'area=optimus;sa=extra');
+		$settings_search[] = array('OptimusAdmin::faviconSettings', 'area=optimus;sa=favicon');
+		$settings_search[] = array('OptimusAdmin::counterSettings', 'area=optimus;sa=counters');
+		$settings_search[] = array('OptimusAdmin::sitemapSettings', 'area=optimus;sa=sitemap');
+	}
+
+	/**
 	 * Ключевая функция, подключающая все остальные при их вызове
 	 *
 	 * @return void
@@ -57,8 +74,7 @@ class OptimusAdmin
 
 		$context['page_title'] = $txt['optimus_main'];
 
-		// Подключаем файл шаблона вместе с таблицей стилей
-		loadTemplate('Optimus', 'optimus');
+		loadTemplate('Optimus');
 
 		$subActions = array(
 			'base'     => array('OptimusAdmin', 'baseSettings'),
@@ -112,7 +128,7 @@ class OptimusAdmin
 	 *
 	 * @return void
 	 */
-	public static function baseSettings()
+	public static function baseSettings($return_config = false)
 	{
 		global $context, $txt, $scripturl, $modSettings;
 
@@ -133,6 +149,9 @@ class OptimusAdmin
 			array('check', 'optimus_404_status')
 		);
 
+		if ($return_config)
+			return $config_vars;
+
 		if (isset($_GET['save'])) {
 			checkSession();
 
@@ -150,7 +169,7 @@ class OptimusAdmin
 	 *
 	 * @return void
 	 */
-	public static function extraSettings()
+	public static function extraSettings($return_config = false)
 	{
 		global $context, $txt, $scripturl, $modSettings, $settings;
 
@@ -159,11 +178,14 @@ class OptimusAdmin
 
 		$config_vars = array(
 			array('title', 'optimus_extra_title'),
-			array('check',  'optimus_og_image', 50),
-			array('text', 'optimus_fb_appid', 40),
-			array('text', 'optimus_tw_cards', 40, 'preinput' => '@'),
-			array('check', 'optimus_json_ld')
+			array('check',  'optimus_og_image', 50, 'help' => 'optimus_og_image_help'),
+			array('text', 'optimus_fb_appid', 40, 'help' => 'optimus_fb_appid_help'),
+			array('text', 'optimus_tw_cards', 40, 'preinput' => '@', 'help' => 'optimus_tw_cards_help'),
+			array('check', 'optimus_json_ld', 'help' => 'optimus_json_ld_help')
 		);
+
+		if ($return_config)
+			return $config_vars;
 
 		if (isset($_GET['save'])) {
 			$_POST['optimus_tw_cards'] = str_replace('@', '', $_POST['optimus_tw_cards']);
@@ -184,11 +206,10 @@ class OptimusAdmin
 	 *
 	 * @return void
 	 */
-	public static function faviconSettings()
+	public static function faviconSettings($return_config = false)
 	{
 		global $context, $txt, $scripturl;
 
-		$context['sub_template'] = 'favicon';
 		$context['page_title'] .= ' - ' . $txt['optimus_favicon_title'];
 		$context['post_url'] = $scripturl . '?action=admin;area=optimus;sa=favicon;save';
 
@@ -196,6 +217,11 @@ class OptimusAdmin
 			array('text', 'optimus_favicon_api_key'),
 			array('large_text', 'optimus_favicon_text')
 		);
+
+		if ($return_config)
+			return $config_vars;
+
+		$context['sub_template'] = 'favicon';
 
 		if (isset($_GET['save'])) {
 			checkSession();
@@ -252,11 +278,10 @@ class OptimusAdmin
 	 *
 	 * @return void
 	 */
-	public static function counterSettings()
+	public static function counterSettings($return_config = false)
 	{
 		global $context, $txt, $scripturl, $modSettings;
 
-		$context['sub_template'] = 'counters';
 		$context['page_title'] .= ' - ' . $txt['optimus_counters'];
 		$context['post_url'] = $scripturl . '?action=admin;area=optimus;sa=counters;save';
 
@@ -272,6 +297,11 @@ class OptimusAdmin
 			array('large_text', 'optimus_counters_css'),
 			array('text', 'optimus_ignored_actions')
 		);
+
+		if ($return_config)
+			return $config_vars;
+
+		$context['sub_template'] = 'counters';
 
 		if (isset($_GET['save'])) {
 			checkSession();
@@ -324,7 +354,7 @@ class OptimusAdmin
 	 *
 	 * @return void
 	 */
-	public static function sitemapSettings()
+	public static function sitemapSettings($return_config = false)
 	{
 		global $context, $txt, $scripturl, $smcFunc, $modSettings, $sourcedir;
 
@@ -338,6 +368,9 @@ class OptimusAdmin
 			array('check', 'optimus_sitemap_boards'),
 			array('int',   'optimus_sitemap_topics')
 		);
+
+		if ($return_config)
+			return $config_vars;
 
 		// Обновляем запись в Диспетчере задач
 		$smcFunc['db_query']('', '

@@ -28,8 +28,7 @@ function template_favicon()
 	</form>';
 
 	echo '
-	<div class="windowbg2 noup">
-		<span class="topslice"><span></span></span>
+	<div class="windowbg noup">
 		<div class="content">
 			<form action="', $context['post_url'], '" method="post" accept-charset="', $context['character_set'], '">
 				<dl class="settings">
@@ -61,7 +60,6 @@ function template_favicon()
 				<div class="righttext"><input type="submit" class="button" value="', $txt['save'], '"></div>
 			</form>
 		</div>
-		<span class="botslice"><span></span></span>
 	</div>';
 
 	// https://realfavicongenerator.net/api/interactive_api
@@ -102,8 +100,7 @@ function template_metatags()
 			<h3 class="catbg">', $txt['optimus_meta_title'], '</h3>
 		</div>
 		<p class="information centertext">', $txt['optimus_meta_info'], '</p>
-		<div class="windowbg2">
-			<span class="topslice"><span></span></span>
+		<div class="windowbg">
 			<div class="content centertext">
 				<table class="table_grid">
 					<tr class="title_bar">
@@ -167,7 +164,6 @@ function template_metatags()
 				<input type="hidden" name="', $context['admin-dbsc_token_var'], '" value="', $context['admin-dbsc_token'], '">
 				<div class="righttext"><input type="submit" class="button" value="', $txt['save'], '"></div>
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>
 	</form>
 	<br class="clear">';
@@ -182,8 +178,7 @@ function template_counters()
 		<div class="cat_bar">
 			<h3 class="catbg">', $txt['optimus_counters'], '</h3>
 		</div>
-		<div class="windowbg2 noup">
-			<span class="topslice"><span></span></span>
+		<div class="windowbg noup">
 			<div class="content">
 				<label for="optimus_head_code">', $txt['optimus_head_code'], '</label><br>
 				<textarea id="optimus_head_code" name="optimus_head_code" cols="60" rows="4" style="width: 99%">', !empty($modSettings['optimus_head_code']) ? $modSettings['optimus_head_code'] : '', '</textarea>
@@ -204,7 +199,6 @@ function template_counters()
 				<input type="hidden" name="', $context['admin-dbsc_token_var'], '" value="', $context['admin-dbsc_token'], '">
 				<div class="righttext"><input type="submit" class="button" value="', $txt['save'], '"></div>
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>
 	</form>
 	<br class="clear">';
@@ -219,8 +213,7 @@ function template_robots()
 		<div class="cat_bar">
 			<h3 class="catbg">', $txt['optimus_manage'], '</h3>
 		</div>
-		<div class="windowbg2">
-			<span class="topslice"><span></span></span>
+		<div class="windowbg">
 			<div class="content">
 				<div class="min">
 					<div class="content">
@@ -236,6 +229,7 @@ function template_robots()
 						<textarea rows="22" name="robots">', $context['robots_content'], '</textarea>
 					</div>
 				</div>
+				<hr class="hrcolor clear">
 				<div class="min">
 					<div class="floatleft">
 						<h4>', $txt['optimus_links_title'], '</h4>
@@ -254,7 +248,6 @@ function template_robots()
 				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 				<div class="righttext"><input type="submit" class="button" value="', $txt['save'], '"></div>
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>
 	</form>
 	<br class="clear">';
@@ -268,23 +261,28 @@ function template_donate()
 	<div class="cat_bar">
 		<h3 class="catbg">', $txt['optimus_donate_title'], '</h3>
 	</div>
-	<br>';
+	<div class="windowbg noup">
+		<div class="content">';
 
 	if (in_array($txt['lang_dictionary'], array('ru', 'uk')))
 		echo '
-	<div class="centertext">
-		<iframe src="https://money.yandex.ru/embed/donate.xml?account=410011113366680&quickpay=donate&payment-type-choice=on&mobile-payment-type-choice=on&default-sum=100&targets=%D0%9D%D0%B0+%D1%80%D0%B0%D0%B7%D0%B2%D0%B8%D1%82%D0%B8%D0%B5+%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0&target-visibility=on&project-name=%D0%9B%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE+%D0%BC%D0%B5%D0%B4%D0%B2%D0%B5%D0%B4%D1%8F&project-site=https%3A%2F%2Fdragomano.ru&button-text=05&successURL=" width="508" height="117" style="border:none;"></iframe>
-	</div>';
+			<div class="centertext">
+				<iframe src="https://money.yandex.ru/embed/donate.xml?account=410011113366680&quickpay=donate&payment-type-choice=on&mobile-payment-type-choice=on&default-sum=100&targets=%D0%9D%D0%B0+%D1%80%D0%B0%D0%B7%D0%B2%D0%B8%D1%82%D0%B8%D0%B5+%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0&target-visibility=on&project-name=%D0%9B%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE+%D0%BC%D0%B5%D0%B4%D0%B2%D0%B5%D0%B4%D1%8F&project-site=https%3A%2F%2Fdragomano.ru&button-text=05&successURL=" width="508" height="117" style="border:none;"></iframe>
+			</div>';
 	else
 		echo '
-	<div id="paypal_donate" class="centertext">
-		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-			<input type="hidden" name="cmd" value="_s-xclick">
-			<input type="hidden" name="hosted_button_id" value="K2AVLACFRVJN6">
-			<input type="hidden" name="return" value="', $scripturl, '?action=admin;area=optimus;sa=donate">
-			<input type="hidden" name="cancel_return" value="', $scripturl, '">
-			<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!" style="height: auto">
-		</form>
+			<div id="paypal_donate" class="centertext">
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="hidden" name="hosted_button_id" value="K2AVLACFRVJN6">
+					<input type="hidden" name="return" value="', $scripturl, '?action=admin;area=optimus;sa=donate">
+					<input type="hidden" name="cancel_return" value="', $scripturl, '">
+					<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!" style="height: auto">
+				</form>
+			</div>';
+
+	echo '
+		</div>
 	</div>';
 }
 
@@ -298,9 +296,7 @@ function template_404()
 			<h3 class="catbg">', $txt['optimus_404_h2'], '</h3>
 		</div>
 		<div class="windowbg">
-			<span class="topslice"><span></span></span>
 			<div class="content">', $txt['optimus_404_h3'], '</div>
-			<span class="botslice"><span></span></span>
 		</div>
 	</div>';
 }
@@ -315,9 +311,7 @@ function template_403()
 			<h3 class="catbg">', $txt['optimus_403_h2'], '</h3>
 		</div>
 		<div class="windowbg">
-			<span class="topslice"><span></span></span>
 			<div class="content">', $txt['optimus_403_h3'], '</div>
-			<span class="botslice"><span></span></span>
 		</div>
 	</div>';
 }

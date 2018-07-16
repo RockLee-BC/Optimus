@@ -30,6 +30,7 @@ class Optimus
 		add_integration_function('integrate_buffer', 'Optimus::buffer', false);
 		add_integration_function('integrate_admin_include', '$sourcedir/Class-OptimusAdmin.php', false);
 		add_integration_function('integrate_admin_areas', 'OptimusAdmin::adminAreas', false);
+		add_integration_function('integrate_admin_search', 'OptimusAdmin::adminSearch', false);
 	}
 
 	/**
@@ -70,7 +71,7 @@ class Optimus
 		$ignored_actions = !empty($modSettings['optimus_ignored_actions']) ? explode(",", $modSettings['optimus_ignored_actions']) : array();
 
 		if (!in_array($context['current_action'], $ignored_actions)) {
-			// Invisible counters like Google Analytics
+			// Invisible counters like as Google Analytics
 			if (!empty($modSettings['optimus_head_code'])) {
 				$head = explode("\n", trim($modSettings['optimus_head_code']));
 				foreach ($head as $part)
