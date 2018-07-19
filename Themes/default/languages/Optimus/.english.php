@@ -87,7 +87,7 @@ $txt['optimus_links_title'] = 'Useful links';
 $txt['optimus_links']       = array(
 	'Create a robots.txt file'              => 'https://support.google.com/webmasters/answer/6062596?hl=en',
 	'Using robots.txt'                      => 'https://help.yandex.com/webmaster/?id=1113851',
-	'Technical audit of the entire website' => 'https://netpeaksoftware.com/ucp?invite=94cdaf6a'
+	'Technical audit of the entire website' => 'https://goo.gl/itx8Fp'
 );
 
 $txt['optimus_sitemap_title'] = 'Optimus Sitemap';

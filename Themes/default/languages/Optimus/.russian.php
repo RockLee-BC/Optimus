@@ -23,7 +23,7 @@ $txt['optimus_board_extend_title_set'] = array('Нет', 'Перед назва�
 $txt['optimus_topic_extend_title']     = 'Добавлять название раздела и форума к заголовкам тем';
 $txt['optimus_topic_extend_title_set'] = array('Нет', 'Перед названием темы', 'После названия темы');
 $txt['optimus_topic_description']      = 'Выводить отрывок первого сообщения на странице темы в мета-теге <strong>description</strong><br><span class="smalltext">Для создания описаний к темам используйте мод <a href="https://dragomano.ru/translations/topic-descriptions" target="_blank" rel="noopener">Topic Descriptions</a>.</span>';
-$txt['optimus_404_status']             = 'Возвращать <a href="https://ru.wikipedia.org/wiki/HTTP#.D0.9A.D0.BE.D0.B4.D1.8B_.D1.81.D0.BE.D1.81.D1.82.D0.BE.D1.8F.D0.BD.D0.B8.D1.8F" target="_blank" rel="noopener">код 403/404</a>, в зависимости от статуса запрашиваемой страницы';
+$txt['optimus_404_status']             = 'Возвращать <a href="https://goo.gl/1UHxeB" target="_blank" rel="noopener">код 403/404</a>, в зависимости от статуса запрашиваемой страницы';
 $txt['optimus_404_page_title']         = '404 - Страница не найдена';
 $txt['optimus_404_h2']                 = 'Ошибка 404';
 $txt['optimus_404_h3']                 = 'Извините, но такой страницы здесь нет.';
@@ -87,10 +87,10 @@ $txt['optimus_useful']      = '<a href="https://dragomano.ru/articles/pravilnyj-
 $txt['optimus_links_title'] = 'Полезные ссылки';
 $txt['optimus_links']       = array(
 	'Проверка robots.txt'                       => 'https://webmaster.yandex.ru/robots.xml',
-	'Как настроить редирект'                    => 'https://beget.com/p1361/ru/articles/htaccess',
-	'Комплексный SEO-аудит всего сайта'         => 'https://netpeaksoftware.com/ru/ucp?invite=94cdaf6a',
-	'Авторегистрация форума в каталогах Рунета' => 'https://1ps.ru/info/?p=383933',
-	'Автоматическое продвижение вашего сайта'   => 'https://www.webeffector.ru/?invitation=f1d58982cd75dbe8e19be3d54a6b25fe'
+	'Как настроить редирект'                    => 'https://goo.gl/LVPRpr',
+	'Комплексный SEO-аудит всего сайта'         => 'https://goo.gl/TBw79p',
+	'Авторегистрация форума в каталогах Рунета' => 'https://goo.gl/uAR3CZ',
+	'Автоматическое продвижение вашего сайта'   => 'https://goo.gl/RMSDnx'
 );
 
 $txt['optimus_sitemap_title'] = 'Карта форума';
