@@ -220,7 +220,7 @@ class Optimus
 
 		if (($settings['og_image'] = cache_get_data('og_image_' . $context['current_topic'], 360)) == null) {
 			$request = $smcFunc['db_query']('', '
-				SELECT IFNULL(id_attach, 0) AS id
+				SELECT COALESCE(id_attach, 0) AS id
 				FROM {db_prefix}attachments
 				WHERE id_msg = {int:msg}
 					AND width > 0

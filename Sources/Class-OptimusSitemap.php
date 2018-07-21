@@ -145,7 +145,7 @@ class OptimusSitemap
 
 		// Topics
 		$request = $smcFunc['db_query']('', '
-			SELECT date_format(FROM_UNIXTIME(m.poster_time), "%Y") AS date, t.id_topic, m.poster_time, m.modified_time
+			SELECT t.id_topic, m.poster_time, m.modified_time
 			FROM {db_prefix}topics AS t
 				INNER JOIN {db_prefix}messages AS m ON (m.id_msg = t.id_last_msg)
 				INNER JOIN {db_prefix}boards AS b ON (b.id_board = t.id_board)
@@ -158,8 +158,10 @@ class OptimusSitemap
 		);
 
 		$topics = array();
-		while ($row = $smcFunc['db_fetch_assoc']($request))
+		while ($row = $smcFunc['db_fetch_assoc']($request)) {
+			$row['date'] = date('Y', $row['poster_time']);
 			$topics[$row['date']][$row['id_topic']] = $row;
+		}
 
 		$smcFunc['db_free_result']($request);
 
@@ -314,7 +316,7 @@ class OptimusSitemap
 	 * @param int $timestamp
 	 * @return string
 	 */
-	private static function getSitemapDate($timestamp)
+	private static function getSitemapDate($timestamp = 0)
 	{
 		$timestamp = empty($timestamp) ? time() : $timestamp;
 		$gmt       = substr(date("O", $timestamp), 0, 3) . ':00';
