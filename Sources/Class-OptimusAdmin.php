@@ -171,7 +171,7 @@ class OptimusAdmin
 	 */
 	public static function extraSettings($return_config = false)
 	{
-		global $context, $txt, $scripturl, $modSettings, $settings;
+		global $context, $txt, $scripturl;
 
 		$context['page_title'] .= ' - ' . $txt['optimus_extra_title'];
 		$context['post_url'] = $scripturl . '?action=admin;area=optimus;sa=extra;save';
@@ -328,7 +328,7 @@ class OptimusAdmin
 		$context['page_title']  .= ' - ' . $txt['optimus_robots_title'];
 		$context['post_url']     = $scripturl . '?action=admin;area=optimus;sa=robots;save';
 
-		$common_rules_path = $_SERVER['DOCUMENT_ROOT'] . "/robots.txt";
+		$common_rules_path = filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . "/robots.txt";
 
 		clearstatcache();
 
@@ -340,10 +340,7 @@ class OptimusAdmin
 		if (isset($_GET['save'])) {
 			checkSession();
 
-			if (isset($_POST['robots'])) {
-				$common_rules = stripslashes($_POST['robots']);
-				file_put_contents($common_rules_path, $common_rules);
-			}
+			file_put_contents($common_rules_path, filter_input(INPUT_POST, 'robots', FILTER_SANITIZE_STRING));
 
 			redirectexit('action=admin;area=optimus;sa=robots');
 		}
