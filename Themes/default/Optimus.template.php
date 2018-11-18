@@ -226,7 +226,7 @@ function template_robots()
 				<div class="min">
 					<div class="content">
 						<h4>', $context['robots_txt_exists'] ? '<a href="' . $boardurl . '/robots.txt" target="_blank">robots.txt</a>' : 'robots.txt', '</h4>
-						<textarea rows="15" name="robots">', $context['robots_content'], '</textarea>
+						<textarea rows="22" name="robots">', $context['robots_content'], '</textarea>
 					</div>
 				</div>
 				<hr class="hrcolor clear">

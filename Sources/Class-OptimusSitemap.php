@@ -84,7 +84,7 @@ class OptimusSitemap
 				SELECT b.id_board, m.poster_time, m.modified_time
 				FROM {db_prefix}boards AS b
 					LEFT JOIN {db_prefix}messages AS m ON (m.id_msg = b.id_last_msg)
-				WHERE FIND_IN_SET(-1, b.member_groups) != 0' . (!empty($modSettings['recycle_board']) ? ' AND b.id_board <> {int:recycle_board}' : '') . (!empty($modSettings['optimus_sitemap_topics']) ? ' AND b.num_posts > {int:posts}' : '') . '
+				WHERE EXISTS (SELECT DISTINCT bpv.id_board FROM {db_prefix}board_permissions_view bpv WHERE (bpv.id_group = -1 AND bpv.deny = 0) AND bpv.id_board = b.id_board)' . (!empty($modSettings['recycle_board']) ? ' AND b.id_board <> {int:recycle_board}' : '') . (!empty($modSettings['optimus_sitemap_topics']) ? ' AND b.num_posts > {int:posts}' : '') . '
 				ORDER BY b.id_board',
 				array(
 					'recycle_board' => !empty($modSettings['recycle_board']) ? (int) $modSettings['recycle_board'] : 0,
@@ -150,7 +150,7 @@ class OptimusSitemap
 			FROM {db_prefix}topics AS t
 				INNER JOIN {db_prefix}messages AS m ON (m.id_msg = t.id_last_msg)
 				INNER JOIN {db_prefix}boards AS b ON (b.id_board = t.id_board)
-			WHERE FIND_IN_SET(-1, b.member_groups) != 0' . (!empty($modSettings['recycle_board']) ? ' AND b.id_board <> {int:recycle_board}' : '') . (!empty($modSettings['optimus_sitemap_topics']) ? ' AND t.num_replies > {int:replies}' : '') . ' AND t.approved = 1
+			WHERE EXISTS (SELECT DISTINCT bpv.id_board FROM {db_prefix}board_permissions_view bpv WHERE (bpv.id_group = -1 AND bpv.deny = 0) AND bpv.id_board = b.id_board)' . (!empty($modSettings['recycle_board']) ? ' AND b.id_board <> {int:recycle_board}' : '') . (!empty($modSettings['optimus_sitemap_topics']) ? ' AND t.num_replies > {int:replies}' : '') . ' AND t.approved = 1
 			ORDER BY t.id_topic',
 			array(
 				'recycle_board' => !empty($modSettings['recycle_board']) ? (int) $modSettings['recycle_board'] : 0,
